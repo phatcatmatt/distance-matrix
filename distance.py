@@ -2,18 +2,10 @@ import googlemaps
 from datetime import datetime
 from keys import maps_key
 
-print('key ' + maps_key)
 gmaps = googlemaps.Client(key=maps_key)
 
-# Geocoding an address
-geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
+matrix_response = gmaps.distance_matrix("Provo, Utah", "Salt Lake City, Utah")
 
-# Look up an address with reverse geocoding
-reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
+print (matrix_response)
 
-# Request directions via public transit
-now = datetime.now()
-directions_result = gmaps.directions("Sydney Town Hall",
-                                     "Parramatta, NSW",
-                                     mode="transit",
-                                     departure_time=now)
+# {'destination_addresses': ['Salt Lake City, UT, USA'], 'origin_addresses': ['Provo, UT, USA'], 'rows': [{'elements': [{'distance': {'text': '71.8 km', 'value': 71838}, 'duration': {'text': '46 mins', 'value': 2768}, 'status': 'OK'}]}], 'status': 'OK'}
